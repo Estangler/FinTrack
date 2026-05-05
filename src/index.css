@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@theme {
+  /* BACKGROUND COLORS */
+  --color-base: #0d0f14;
+  --color-surface: #13161e;
+  --color-card: #1a1e2a;
+  --color-elevated: #222737;
+  --color-hover: #2a3045;
+
+  /* ACCENT COLORS */
+  --color-accent-gold: #c9a84c;
+  --color-accent-green: #3dd68c;
+  --color-accent-red: #f2564d;
+  --color-accent-blue: #4d9ef5;
+  --color-accent-purple: #9b7fe8;
+
+  /* TEXT COLORS */
+  --color-txt-primary: #f0f2f8;
+  --color-txt-secondary: #8b92a9;
+  --color-txt-muted: #4e5568;
+}
