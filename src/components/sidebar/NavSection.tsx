@@ -8,7 +8,7 @@ export default function NavSection() {
       icon: "📊",
     },
     {
-      title: "Transação",
+      title: "Transações",
       icon: "💳",
     },
     {
@@ -29,7 +29,7 @@ export default function NavSection() {
             <li key={category.title} className="flex gap-3 items-center">
               <button
                 className={`px-3 flex gap-3 h-10 w-full text-start rounded-xl items-center transition duration-150 ease-in
-                ${active === category.title && `bg-accent-gold/20 text-accent-gold`}`}
+                ${active === category.title && `bg-accent-gold/15 text-accent-gold`}`}
                 onClick={() => setActive(category.title)}
               >
                 <span>{category.icon}</span>
