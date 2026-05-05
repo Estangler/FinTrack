@@ -1,22 +1,22 @@
 import { useState } from "react";
 
 export default function NavSection() {
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("dashboard");
   const navTitle = [
     {
-      title: "Dashboard",
+      title: "dashboard",
       icon: "📊",
     },
     {
-      title: "Transações",
+      title: "transações",
       icon: "💳",
     },
     {
-      title: "Relatórios",
+      title: "relatórios",
       icon: "📈",
     },
     {
-      title: "Categorias",
+      title: "categorias",
       icon: "🏷️",
     },
   ];
@@ -33,7 +33,7 @@ export default function NavSection() {
                 onClick={() => setActive(category.title)}
               >
                 <span>{category.icon}</span>
-                <span>{category.title}</span>
+                <span className="capitalize">{category.title}</span>
               </button>
             </li>
           ))}

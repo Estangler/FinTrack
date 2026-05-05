@@ -1,4 +1,5 @@
 import Card from "./Card";
+import TransactionsContainer from "./TransactionsContainer";
 
 export default function DashboardContainer() {
   return (
@@ -11,6 +12,7 @@ export default function DashboardContainer() {
       </header>
 
       <Card />
+      <TransactionsContainer />
     </div>
   );
 }

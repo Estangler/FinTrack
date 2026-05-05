@@ -22,7 +22,7 @@ export default function Card() {
       {cardInfo.map((info) => (
         <div
           key={info.label}
-          className="bg-card border border-txt-muted py-5 px-6 overflow-hidden rounded-[18px] flex-1 relative"
+          className="bg-card border border-hover py-5 px-6 overflow-hidden rounded-[18px] flex-1 relative"
         >
           <div
             className={`h-0.5 ${iconVariant[info.label as keyof typeof iconVariant]} absolute top-0 left-0 right-0`}
