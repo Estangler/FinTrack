@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --color-*: initial;
+
   /* BACKGROUND COLORS */
   --color-base: #0d0f14;
   --color-surface: #13161e;
@@ -19,4 +21,10 @@
   --color-txt-primary: #f0f2f8;
   --color-txt-secondary: #8b92a9;
   --color-txt-muted: #4e5568;
+
+  /* FONTS */
+
+  --font-sans: "Outfit", sans-serif;
+  --font-serif: "DM Serif Display", serif;
+  --font-mono: "DM Mono", monospace;
 }
