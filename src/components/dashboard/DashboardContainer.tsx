@@ -1,6 +1,6 @@
 import Card from "./Card";
-import GraficContainer from "./GraficContainer";
-import TransactionsContainer from "./TransactionsContainer";
+import GraficContainer from "./dashboard-grafics/GraficContainer";
+import TransactionsContainer from "./transactions/TransactionsContainer";
 
 type DashboardContainerProps = {
   handleModal: () => void;
@@ -20,7 +20,7 @@ export default function DashboardContainer({
         </div>
 
         <button
-          className={`px-6 h-10 text-start rounded-xl items-center transition duration-200 ease-linear text-base text-sm cursor-pointer bg-linear-to-r from-accent-gold to-txt-primary shadow-2xl shadow-accent-gold hover:scale-110 hover:shadow-md`}
+          className={`px-6 h-10 text-start rounded-xl items-center transition duration-200 ease-linear text-base text-sm cursor-pointer bg-linear-to-r from-accent-gold to-accent-gold/90 shadow-xl/30 shadow-accent-gold hover:scale-110 hover:shadow-md`}
           onClick={handleModal}
         >
           +Nova

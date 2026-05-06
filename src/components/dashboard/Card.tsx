@@ -6,8 +6,8 @@ export default function Card() {
   ];
 
   const cardTextVariant = {
-    saldo: "text-accent-gold ",
-    receitas: "text-accent-green ",
+    saldo: "text-accent-gold",
+    receitas: "text-accent-green",
     despesas: "text-accent-red ",
   };
 
@@ -28,11 +28,11 @@ export default function Card() {
             className={`h-0.5 ${iconVariant[info.label as keyof typeof iconVariant]} absolute top-0 left-0 right-0`}
           />
           <p
-            className={`${iconVariant[info.label as keyof typeof iconVariant]}/10 w-8 h-8 flex items-center justify-center rounded-lg mb-8`}
+            className={`w-8 h-8 flex items-center justify-center rounded-lg mb-8 ${iconVariant[info.label as keyof typeof iconVariant]}/10`}
           >
             {info.icon}
           </p>
-          <p className="text-txt-muted uppercase">{info.label}</p>
+          <p className="text-txt-muted uppercase text-xs">{info.label}</p>
           <p
             className={`${cardTextVariant[info.label as keyof typeof iconVariant]} text-2xl font-mono`}
           >

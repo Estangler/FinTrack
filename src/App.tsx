@@ -1,6 +1,6 @@
 import DashboardContainer from "./components/dashboard/DashboardContainer";
 import Sidebar from "./components/sidebar/Sidebar";
-import TransactionModal from "./components/dashboard/TransactionModal";
+import TransactionModal from "./components/modal/TransactionModal";
 import { useState } from "react";
 
 function App() {
