@@ -4,7 +4,7 @@ type typeModalForm = {
 
 export default function ModalForm({ type }: typeModalForm) {
   return (
-    <form className="space-y-4 grid grid-cols-2 items-center gap-3 text-txt-primary">
+    <form className="space-y-4 grid grid-cols-2 gap-3 text-txt-primary">
       <label htmlFor="description" className="space-y-3">
         <p className="text-txt-secondary font-medium">Descrição</p>
         <input

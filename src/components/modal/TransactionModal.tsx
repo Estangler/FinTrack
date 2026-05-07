@@ -15,6 +15,7 @@ export default function TransactionModal({
   handleModal,
 }: TransactionModalProps) {
   const [transitionType, setTransitionType] = useState<string>("receita");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   return (
     <Modal
@@ -59,16 +60,25 @@ export default function TransactionModal({
         <h5 className="text-txt-secondary font-medium">Categoria</h5>
         <div className="grid grid-cols-4 gap-3">
           {transitionType === "receita" ? (
-            <IncomingCategories />
+            <IncomingCategories
+              handleCategory={setSelectedCategory}
+              categorie={selectedCategory}
+            />
           ) : (
-            <ExpenseCategories />
+            <ExpenseCategories
+              handleCategory={setSelectedCategory}
+              categorie={selectedCategory}
+            />
           )}
         </div>
       </div>
 
       <ModalForm type={transitionType} />
       <div className="flex gap-3 text-xs font-semibold">
-        <button className="px-4 py-2 border border-hover rounded-2xl">
+        <button
+          className="px-4 py-2 border border-hover rounded-2xl cursor-pointer hover:opacity-80 transition-all duration-300"
+          onClick={handleModal}
+        >
           Cancelar
         </button>
         <button
