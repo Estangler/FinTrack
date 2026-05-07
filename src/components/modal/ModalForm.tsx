@@ -1,10 +1,10 @@
-type typeModalForm = {
-  type: string;
+type ModalFormProps = {
+  transactionType: string;
 };
 
-export default function ModalForm({ type }: typeModalForm) {
+export default function ModalForm({ transactionType }: ModalFormProps) {
   return (
-    <form className="space-y-4 grid grid-cols-2 gap-3 text-txt-primary">
+    <form className="space-y-4 grid grid-cols-2 gap-2 text-txt-primary">
       <label htmlFor="description" className="space-y-3">
         <p className="text-txt-secondary font-medium">Descrição</p>
         <input
@@ -20,7 +20,7 @@ export default function ModalForm({ type }: typeModalForm) {
         <input
           type="text"
           id="wage"
-          className={`${type === "receita" ? "not-placeholder-shown:border-accent-gold ring-accent-gold" : "not-placeholder-shown:border-accent-red ring-accent-red"} border border-hover rounded-lg bg-card py-2 px-2 text-sm outline-none w-full font-mono`}
+          className={`${transactionType === "receita" ? "not-placeholder-shown:border-accent-gold ring-accent-gold" : "not-placeholder-shown:border-accent-red ring-accent-red"} border border-hover rounded-lg bg-card py-2 px-2 text-sm outline-none w-full font-mono`}
           placeholder="Ex: R$ 4.200"
         />
       </label>
