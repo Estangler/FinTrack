@@ -27,7 +27,7 @@ export default function ExpenseCategories({
     return (
       <button
         key={category.label}
-        className={`${isSelected ? `border-accent-red bg-accent-red/10` : "bg-card border-transparent"} flex flex-col items-center justify-center rounded-lg py-4 px-6 text-xs font-light gap-1 cursor-pointer hover:shadow-md hover:shadow-accent-gold/10 hover:border-accent-red/90 transition-all duration-200 ease-linear flex-1 border `}
+        className={`${isSelected ? `border-accent-red bg-accent-red/10` : "bg-card border-transparent"} flex flex-col items-center justify-center rounded-lg py-4 px-6 text-xs font-light gap-1 cursor-pointer hover:shadow-md hover:shadow-accent-red/10 hover:border-accent-red/90 transition-all duration-200 ease-linear flex-1 border `}
         onClick={() => handleCategory(category.label)}
       >
         <span className="text-lg">{category.icon}</span>
