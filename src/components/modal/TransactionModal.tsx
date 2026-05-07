@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import IncomingCategories from "./CategorySelector";
+import CategorySelector from "./CategorySelector";
 import ModalHeader from "./ModalHeader";
 import ModalForm from "./ModalForm";
 import { useState } from "react";
@@ -35,15 +35,15 @@ export default function TransactionModal({
       <div className="space-y-3">
         <h5 className="text-txt-secondary font-medium">Categoria</h5>
         <div className="grid grid-cols-4 gap-2">
-          <IncomingCategories
-            category={
+          <CategorySelector
+            categories={
               transactionType === "receita"
                 ? incomeCategories
                 : expenseCategories
             }
             variant={transactionType === "receita" ? "income" : "expense"}
-            handleCategory={setSelectedCategory}
-            categorie={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+            selectedCategory={selectedCategory}
           />
         </div>
       </div>
