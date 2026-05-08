@@ -1,26 +1,27 @@
-import type {
-  CurrentTransaction,
-  TransactionState,
+import {
+  EMPTY_TRANSACTION,
+  type CurrentTransaction,
+  type TransactionState,
 } from "../types/transaction";
-import { validateTransaction } from "../validators/transactionValidator";
+import {
+  validateTransaction,
+  type ValidationErrors,
+} from "../validators/transactionValidator";
 
 export const INITIAL_STATE: TransactionState = {
   transactions: [],
 
-  currentTransaction: {
-    transactionType: "expense",
-    category: "",
-    description: "",
-    amount: "",
-    date: "",
-    recurrence: "none",
-  },
+  currentTransaction: EMPTY_TRANSACTION,
 
   errors: {},
 };
 
 export type Action =
-  | { type: "CHANGE_INPUT"; field: keyof CurrentTransaction; payload: string }
+  | {
+      type: "CHANGE_INPUT";
+      field: keyof CurrentTransaction;
+      payload: CurrentTransaction[keyof CurrentTransaction];
+    }
   | { type: "ADD_TRANSACTION" };
 
 export const transactionReducer = (
@@ -41,12 +42,16 @@ export const transactionReducer = (
         errors: {
           ...state.errors,
 
-          [action.field]: "",
+          ...(action.field in state.errors && {
+            [action.field]: "",
+          }),
         },
       };
 
     case "ADD_TRANSACTION": {
-      const errors = validateTransaction(state.currentTransaction);
+      const errors: ValidationErrors = validateTransaction(
+        state.currentTransaction,
+      );
 
       const hasErrors = Object.keys(errors).length > 0;
 
@@ -70,14 +75,7 @@ export const transactionReducer = (
           },
         ],
 
-        currentTransaction: {
-          transactionType: "expense",
-          category: "",
-          description: "",
-          amount: "",
-          date: "",
-          recurrence: "none",
-        },
+        currentTransaction: EMPTY_TRANSACTION,
 
         errors: {},
       };

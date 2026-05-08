@@ -1,6 +1,6 @@
 import type { CurrentTransaction } from "../types/transaction";
 
-type ValidationErrors = {
+export type ValidationErrors = {
   description?: string;
   amount?: string;
   date?: string;
@@ -19,6 +19,8 @@ export function validateTransaction(
 
   if (!transaction.amount.trim()) {
     errors.amount = "Valor obrigatório.";
+  } else if (isNaN(amount) || amount <= 0) {
+    errors.amount = "Digite um valor válido";
   }
 
   if (!transaction.date) {
@@ -27,10 +29,6 @@ export function validateTransaction(
 
   if (!transaction.category) {
     errors.category = "Selecione uma categoria";
-  }
-
-  if (isNaN(amount) || amount <= 0) {
-    errors.amount = "Digite um valor válido";
   }
 
   return errors;
