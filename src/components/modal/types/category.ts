@@ -2,8 +2,9 @@ export type Category = {
   icon: string;
   label: string;
 };
+
 export type Transaction = {
-  id: number;
+  id: string;
   transactionType: string;
   category: string;
   description: string;

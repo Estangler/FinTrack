@@ -1,3 +1,5 @@
+import { type Transaction } from "../components/modal/types/category";
+
 export const INITIAL_STATE = {
   transactions: [],
 
@@ -11,7 +13,25 @@ export const INITIAL_STATE = {
   },
 };
 
-export const transactionReducer = (state, action) => {
+type Action =
+  | { type: "CHANGE_INPUT"; field: string; payload: string }
+  | { type: "ADD_TRANSACTION" };
+
+type CurrentTransaction = {
+  transactionType: string;
+  category: string;
+  description: string;
+  amount: string;
+  date: string;
+  recurrence: string;
+};
+
+type INITIAL_STATE = {
+  transactions: Transaction[];
+  currentTransaction: CurrentTransaction;
+};
+
+export const transactionReducer = (state: INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case "CHANGE_INPUT":
       return {

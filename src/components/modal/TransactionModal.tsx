@@ -41,6 +41,10 @@ export default function TransactionModal({
     dispatch({ type: "CHANGE_INPUT", field: "category", payload: category });
   }
 
+  function onSaveTransaction() {
+    dispatch({ type: "ADD_TRANSACTION" });
+  }
+
   console.log(state);
 
   return (
@@ -78,13 +82,14 @@ export default function TransactionModal({
       </div>
 
       <ModalForm
-        transactionType={state.currentTransaction}
+        transactionType={state.currentTransaction.transactionType}
         handleChange={handleChange}
         state={state.currentTransaction}
       />
       <div className="flex font-semibold">
         <button
           className={`${state.currentTransaction.transactionType === "receita" ? "bg-linear-to-r from-accent-gold to-accent-gold/90 text-base shadow-xl/30 shadow-accent-gold" : "bg-linear-to-r from-accent-red to-accent-red/90 text-[#fff]"} py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 ease-linear w-full hover:opacity-50`}
+          onClick={onSaveTransaction}
         >
           Salvar Transação
         </button>
