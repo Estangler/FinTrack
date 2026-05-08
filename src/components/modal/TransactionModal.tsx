@@ -2,21 +2,46 @@ import Modal from "react-modal";
 import CategorySelector from "./CategorySelector";
 import ModalHeader from "./ModalHeader";
 import ModalForm from "./ModalForm";
-import { useState } from "react";
 import TransactionTypeSelector from "./TransactionTypeSelector";
 import { expenseCategories, incomeCategories } from "./data/category";
+import { useReducer } from "react";
 
 type TransactionModalProps = {
   isModalOpen: boolean;
   handleModal: () => void;
 };
 
+import {
+  INITIAL_STATE,
+  transactionReducer,
+} from "../../reducer/transactionReducer";
+
 export default function TransactionModal({
   isModalOpen,
   handleModal,
 }: TransactionModalProps) {
-  const [transactionType, setTransactionType] = useState<string>("receita");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [state, dispatch] = useReducer(transactionReducer, INITIAL_STATE);
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) {
+    const { name, value } = e.target;
+    dispatch({
+      type: "CHANGE_INPUT",
+      field: name,
+      payload: value,
+    });
+  }
+
+  function onSelectType(type: string) {
+    dispatch({ type: "CHANGE_INPUT", field: "transactionType", payload: type });
+  }
+
+  function onSelectCategory(category: string) {
+    dispatch({ type: "CHANGE_INPUT", field: "category", payload: category });
+  }
+
+  console.log(state);
 
   return (
     <Modal
@@ -28,8 +53,8 @@ export default function TransactionModal({
       <ModalHeader handleModal={handleModal} />
 
       <TransactionTypeSelector
-        categorie={transactionType}
-        onSelectType={setTransactionType}
+        categorie={state.currentTransaction.transactionType}
+        onSelectType={onSelectType}
       />
 
       <div className="space-y-3">
@@ -37,21 +62,29 @@ export default function TransactionModal({
         <div className="grid grid-cols-4 gap-2">
           <CategorySelector
             categories={
-              transactionType === "receita"
+              state.currentTransaction.transactionType === "receita"
                 ? incomeCategories
                 : expenseCategories
             }
-            variant={transactionType === "receita" ? "income" : "expense"}
-            onSelectCategory={setSelectedCategory}
-            selectedCategory={selectedCategory}
+            variant={
+              state.currentTransaction.transactionType === "receita"
+                ? "income"
+                : "expense"
+            }
+            onSelectCategory={onSelectCategory}
+            selectedCategory={state.currentTransaction.category}
           />
         </div>
       </div>
 
-      <ModalForm transactionType={transactionType} />
+      <ModalForm
+        transactionType={state.currentTransaction}
+        handleChange={handleChange}
+        state={state.currentTransaction}
+      />
       <div className="flex font-semibold">
         <button
-          className={`${transactionType === "receita" ? "bg-linear-to-r from-accent-gold to-accent-gold/90 text-base shadow-xl/30 shadow-accent-gold" : "bg-linear-to-r from-accent-red to-accent-red/90 text-[#fff]"} py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 ease-linear w-full`}
+          className={`${state.currentTransaction.transactionType === "receita" ? "bg-linear-to-r from-accent-gold to-accent-gold/90 text-base shadow-xl/30 shadow-accent-gold" : "bg-linear-to-r from-accent-red to-accent-red/90 text-[#fff]"} py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 ease-linear w-full hover:opacity-50`}
         >
           Salvar Transação
         </button>

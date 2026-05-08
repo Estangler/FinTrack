@@ -6,15 +6,15 @@ import { useState } from "react";
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function openModal() {
+  function handleModal() {
     setModalIsOpen(!modalIsOpen);
   }
 
   return (
     <div className="flex">
       <Sidebar />
-      <DashboardContainer handleModal={openModal} />
-      <TransactionModal handleModal={openModal} isModalOpen={modalIsOpen} />
+      <DashboardContainer handleModal={handleModal} />
+      <TransactionModal handleModal={handleModal} isModalOpen={modalIsOpen} />
     </div>
   );
 }
