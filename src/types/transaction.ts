@@ -1,20 +1,23 @@
+export type TransactionType = "income" | "expense";
+export type RecurrenceType = "none" | "monthly";
+
 export type CurrentTransaction = {
-  transactionType: string;
+  transactionType: TransactionType;
   category: string;
   description: string;
   amount: string;
   date: string;
-  recurrence: string;
+  recurrence: RecurrenceType;
 };
 
 export type Transaction = {
   id: string;
-  transactionType: string;
+  transactionType: TransactionType;
   category: string;
   description: string;
   amount: string;
   date: string;
-  recurrence: string;
+  recurrence: RecurrenceType;
 };
 
 export type TransactionState = {
