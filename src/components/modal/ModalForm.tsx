@@ -44,7 +44,7 @@ export default function ModalForm({
           value={state.amount}
           name="amount"
           id="amount"
-          className={`${transactionType === "receita" ? "not-placeholder-shown:border-accent-gold ring-accent-gold" : "not-placeholder-shown:border-accent-red ring-accent-red"} border border-hover rounded-lg bg-card py-2 px-2 text-sm outline-none w-full font-mono`}
+          className={`${transactionType === "income" ? "not-placeholder-shown:border-accent-gold ring-accent-gold" : "not-placeholder-shown:border-accent-red ring-accent-red"} border border-hover rounded-lg bg-card py-2 px-2 text-sm outline-none w-full font-mono`}
           placeholder="Ex: R$ 4.200"
         />
       </label>

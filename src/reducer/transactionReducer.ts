@@ -4,7 +4,7 @@ export const INITIAL_STATE = {
   transactions: [],
 
   currentTransaction: {
-    transactionType: "receita",
+    transactionType: "expense",
     category: "",
     description: "",
     amount: "",
@@ -55,7 +55,7 @@ export const transactionReducer = (state: TransactionState, action: Action) => {
         ],
 
         currentTransaction: {
-          transactionType: "receita",
+          transactionType: "expense",
           category: "",
           description: "",
           amount: "",

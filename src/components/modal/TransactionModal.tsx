@@ -4,23 +4,18 @@ import ModalHeader from "./ModalHeader";
 import ModalForm from "./ModalForm";
 import TransactionTypeSelector from "./TransactionTypeSelector";
 import { expenseCategories, incomeCategories } from "./data/category";
-import { useReducer } from "react";
+import { useTransaction } from "../../hook/useTransaction";
 
 type TransactionModalProps = {
   isModalOpen: boolean;
   handleModal: () => void;
 };
 
-import {
-  INITIAL_STATE,
-  transactionReducer,
-} from "../../reducer/transactionReducer";
-
 export default function TransactionModal({
   isModalOpen,
   handleModal,
 }: TransactionModalProps) {
-  const [state, dispatch] = useReducer(transactionReducer, INITIAL_STATE);
+  const { state, dispatch } = useTransaction();
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -66,12 +61,12 @@ export default function TransactionModal({
         <div className="grid grid-cols-4 gap-2">
           <CategorySelector
             categories={
-              state.currentTransaction.transactionType === "receita"
+              state.currentTransaction.transactionType === "income"
                 ? incomeCategories
                 : expenseCategories
             }
             variant={
-              state.currentTransaction.transactionType === "receita"
+              state.currentTransaction.transactionType === "income"
                 ? "income"
                 : "expense"
             }
@@ -88,7 +83,7 @@ export default function TransactionModal({
       />
       <div className="flex font-semibold">
         <button
-          className={`${state.currentTransaction.transactionType === "receita" ? "bg-linear-to-r from-accent-gold to-accent-gold/90 text-base shadow-xl/30 shadow-accent-gold" : "bg-linear-to-r from-accent-red to-accent-red/90 text-[#fff]"} py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 ease-linear w-full hover:opacity-50`}
+          className={`${state.currentTransaction.transactionType === "income" ? "bg-linear-to-r from-accent-gold to-accent-gold/90 text-base shadow-xl/30 shadow-accent-gold" : "bg-linear-to-r from-accent-red to-accent-red/90 text-[#fff]"} py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 ease-linear w-full hover:opacity-50`}
           onClick={onSaveTransaction}
         >
           Salvar Transação
