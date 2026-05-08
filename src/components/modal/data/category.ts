@@ -2,7 +2,7 @@ import type { Category } from "../types/category";
 
 export const incomeCategories: Category[] = [
   { icon: "💰", label: "Salário" },
-  { icon: "📈", label: "Invest." },
+  { icon: "📈", label: "Investimento" },
   { icon: "🎁", label: "Presente" },
   { icon: "🔄", label: "Outros" },
 ];

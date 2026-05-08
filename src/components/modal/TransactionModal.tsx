@@ -47,7 +47,7 @@ export default function TransactionModal({
       isOpen={isModalOpen}
       onRequestClose={handleModal}
       overlayClassName={`fixed inset-0 bg-base/70 backdrop-blur-sm flex items-center justify-center`}
-      className={`bg-surface border border-txt-secondary outline-none p-8 rounded-2xl w-full max-w-120 shadow-accent-purple/20 shadow-lg space-y-5 text-txt-secondary text-sm m-2`}
+      className={`bg-surface border border-hover outline-none p-8 rounded-2xl w-full max-w-120 shadow-accent-purple/20 shadow-lg space-y-5 text-txt-secondary text-sm m-2`}
     >
       <ModalHeader handleModal={handleModal} />
 
@@ -86,7 +86,9 @@ export default function TransactionModal({
           className={`${state.currentTransaction.transactionType === "income" ? "bg-linear-to-r from-accent-gold to-accent-gold/90 text-base shadow-xl/30 shadow-accent-gold" : "bg-linear-to-r from-accent-red to-accent-red/90 text-[#fff]"} py-2 px-1 rounded-lg cursor-pointer transition-all duration-200 ease-linear w-full hover:opacity-50`}
           onClick={onSaveTransaction}
         >
-          Salvar Transação
+          {state.currentTransaction.transactionType === "income"
+            ? "Salvar Receita"
+            : "Salvar Despesa"}
         </button>
       </div>
     </Modal>

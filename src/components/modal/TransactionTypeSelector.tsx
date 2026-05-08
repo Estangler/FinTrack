@@ -16,6 +16,7 @@ export default function TransactionTypeSelector({
         <span>📥</span>
         <p className="capitalize">receita</p>
       </button>
+
       <button
         className={`flex-1 rounded-lg h-8 font-semibold flex items-center justify-center cursor-pointer ${categorie === "expense" && `bg-accent-red/10 text-accent-red transition-all duration-200 ease-in-out`}`}
         onClick={() => onSelectType("expense")}

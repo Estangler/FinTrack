@@ -22,7 +22,7 @@ export default function ModalForm({
   handleChange,
 }: ModalFormProps) {
   return (
-    <form className="space-y-4 grid grid-cols-2 gap-2 text-txt-primary">
+    <form className="grid grid-cols-2 gap-2 text-txt-primary">
       <label htmlFor="description" className="space-y-3">
         <p className="text-txt-secondary font-medium">Descrição</p>
         <input
@@ -36,7 +36,7 @@ export default function ModalForm({
         />
       </label>
 
-      <label htmlFor="wage" className="space-y-3">
+      <label htmlFor="amount" className="space-y-3">
         <p className="text-txt-secondary font-medium">Valor</p>
         <input
           type="text"
