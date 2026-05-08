@@ -1,6 +1,10 @@
-import { type Transaction } from "../components/modal/types/category";
+import type {
+  CurrentTransaction,
+  TransactionState,
+} from "../types/transaction";
+import { validateTransaction } from "../validators/transactionValidator";
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE: TransactionState = {
   transactions: [],
 
   currentTransaction: {
@@ -11,27 +15,18 @@ export const INITIAL_STATE = {
     date: "",
     recurrence: "none",
   },
+
+  errors: {},
 };
 
 export type Action =
-  | { type: "CHANGE_INPUT"; field: string; payload: string }
+  | { type: "CHANGE_INPUT"; field: keyof CurrentTransaction; payload: string }
   | { type: "ADD_TRANSACTION" };
 
-type CurrentTransaction = {
-  transactionType: string;
-  category: string;
-  description: string;
-  amount: string;
-  date: string;
-  recurrence: string;
-};
-
-export type TransactionState = {
-  transactions: Transaction[];
-  currentTransaction: CurrentTransaction;
-};
-
-export const transactionReducer = (state: TransactionState, action: Action) => {
+export const transactionReducer = (
+  state: TransactionState,
+  action: Action,
+): TransactionState => {
   switch (action.type) {
     case "CHANGE_INPUT":
       return {
@@ -39,17 +34,38 @@ export const transactionReducer = (state: TransactionState, action: Action) => {
 
         currentTransaction: {
           ...state.currentTransaction,
+
           [action.field]: action.payload,
+        },
+
+        errors: {
+          ...state.errors,
+
+          [action.field]: "",
         },
       };
 
-    case "ADD_TRANSACTION":
+    case "ADD_TRANSACTION": {
+      const errors = validateTransaction(state.currentTransaction);
+
+      const hasErrors = Object.keys(errors).length > 0;
+
+      if (hasErrors) {
+        return {
+          ...state,
+          errors,
+        };
+      }
+
       return {
         ...state,
+
         transactions: [
           ...state.transactions,
+
           {
             ...state.currentTransaction,
+
             id: crypto.randomUUID(),
           },
         ],
@@ -62,7 +78,10 @@ export const transactionReducer = (state: TransactionState, action: Action) => {
           date: "",
           recurrence: "none",
         },
+
+        errors: {},
       };
+    }
 
     default:
       return state;
